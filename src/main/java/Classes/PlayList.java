@@ -1,19 +1,16 @@
 package Classes;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class PlayList {
     private UUID id;
     private String name;
-    private List<Song> songs;
+    private Set<Song> songs;
 
-    public PlayList(UUID id, String name) {
+    public PlayList(String name) {
         this.id = UUID.randomUUID();
         this.name = name;
-        this.songs = new ArrayList<>();
+        this.songs = new HashSet<>();
     }
 
     public UUID getId() {
@@ -28,12 +25,16 @@ public class PlayList {
         this.name = name;
     }
 
-    public List<Song> getSongs() {
+    public Set<Song> getSongs() {
         return songs;
     }
 
-    public void setSongs(List<Song> songs) {
+    public void setSongs(Set<Song> songs) {
         this.songs = songs;
+    }
+
+    public void addSong() {
+
     }
 
     @Override

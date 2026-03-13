@@ -1,7 +1,9 @@
 package Exceptions;
 
-public class PlaylistNotFoundException extends RuntimeException {
-    public PlaylistNotFoundException(String message) {
-        super(message);
+import java.util.UUID;
+
+public class PlaylistNotFoundException extends EntityNotFoundException {
+    public PlaylistNotFoundException(UUID id) {
+        super("Playlist not found with id: " + id);
     }
 }

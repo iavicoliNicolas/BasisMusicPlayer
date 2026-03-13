@@ -1,7 +1,9 @@
 package Exceptions;
 
-public class SongNotFoundException extends RuntimeException {
-    public SongNotFoundException(String message) {
-        super(message);
+import java.util.UUID;
+
+public class SongNotFoundException extends EntityNotFoundException {
+    public SongNotFoundException(UUID id) {
+        super("Song not found with id: " + id);
     }
 }

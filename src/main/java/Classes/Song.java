@@ -12,7 +12,7 @@ public class Song {
     private int durationSeconds;
     private Genre genre;
 
-    public Song(long id, String title, String artist, int durationSeconds, Genre genre) {
+    public Song(String title, String artist, int durationSeconds, Genre genre) {
         this.id = UUID.randomUUID();
         this.title = title;
         this.artist = artist;

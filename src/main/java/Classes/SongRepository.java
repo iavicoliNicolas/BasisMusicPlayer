@@ -24,7 +24,7 @@ public class SongRepository implements Repository<Song, UUID> {
 
     @Override
     public List<Song> findAll() {
-        return List.of();
+        return new ArrayList<>(songs.values());
     }
 
     @Override

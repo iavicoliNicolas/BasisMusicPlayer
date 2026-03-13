@@ -7,7 +7,7 @@ public class PlayList {
     private String name;
     private Set<Song> songs;
 
-    public PlayList(String name) {
+    public PlayList(UUID uuid, String name) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.songs = new HashSet<>();
@@ -33,8 +33,8 @@ public class PlayList {
         this.songs = songs;
     }
 
-    public void addSong() {
-
+    public void addSong(Song song) {
+        songs.add(song);
     }
 
     @Override

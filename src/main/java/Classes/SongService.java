@@ -32,6 +32,7 @@ public class SongService {
     }
 
     public void removeSongById(UUID id) {
+        getSongById(id); // tira SongNotFoundException si no existe
         songRepository.deleteById(id);
     }
 }

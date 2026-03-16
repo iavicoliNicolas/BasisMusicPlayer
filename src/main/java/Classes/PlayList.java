@@ -37,6 +37,10 @@ public class PlayList {
         songs.add(song);
     }
 
+    public void removeSong(Song song) {
+        songs.remove(song);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

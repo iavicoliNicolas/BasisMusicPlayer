@@ -2,6 +2,7 @@ package Classes;
 
 import Exceptions.EntityNotFoundException;
 import Exceptions.PlaylistNotFoundException;
+import Exceptions.SongNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,16 +40,20 @@ public class PlayListService {
     }
 
     public void addSongToPlayList(UUID playlist, UUID songid) {
-        Optional<PlayList> playListOpt = playLists.findById(playlist);
-        PlayList playList = playListOpt.get();
-        if (playList == null) throw new PlaylistNotFoundException(playlist);
+        PlayList playList = playLists.findById(playlist)
+                .orElseThrow(() -> new PlaylistNotFoundException(playlist));
 
-        Optional<Song> song =songService.getSongById(songid);
+        Song song = songService.getSongById(songid)
+                .orElseThrow(() -> new SongNotFoundException(songid));
 
-        playList.addSong(song.get());
+        playList.addSong(song);
     }
 
-    public void removeSongOfPlayList() {
+    public void removeSongOfPlayList(UUID playListID, UUID songid) {
+        PlayList playList = playLists.findById(playListID).orElseThrow(() -> new PlaylistNotFoundException(playListID));
 
+        Song song = songService.getSongById(songid).orElseThrow(() -> new SongNotFoundException(songid));
+
+        playList.removeSong(song);
     }
 }

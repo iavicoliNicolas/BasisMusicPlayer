@@ -33,9 +33,6 @@ public class PlayListService {
     }
 
     public List<PlayList> listPlaylists() {
-        String message = "Empty repositoy";
-        if ( playLists == null )
-            throw new EntityNotFoundException(message);
         return playLists.findAll();
     }
 
@@ -55,5 +52,30 @@ public class PlayListService {
         Song song = songService.getSongById(songid).orElseThrow(() -> new SongNotFoundException(songid));
 
         playList.removeSong(song);
+    }
+
+    public void deletePlayList(UUID playListID) {
+        //verify that playList exist
+        playLists.findById(playListID).orElseThrow(() -> new PlaylistNotFoundException(playListID));
+        playLists.deleteById(playListID);
+    }
+
+    public Optional<PlayList> getPlaylistById(UUID id) {
+        Optional<PlayList> playList = playLists.findById(id);
+        if ( playList.isEmpty() ) {
+            throw new PlaylistNotFoundException(id);
+        }
+        return playList;
+    }
+
+    public int getTotalDuration(UUID id) {
+        int total = 0;
+
+        PlayList playList = getPlaylistById(id).orElseThrow();
+        for (Song song: playList.getSongs()) {
+            total += song.getDurationSeconds();
+        }
+
+        return total;
     }
 }

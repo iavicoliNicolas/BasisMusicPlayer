@@ -19,7 +19,7 @@ public class Main {
 
         Scanner sc1 = new Scanner(System.in);
         SongService songService = new SongService();
-        PlayListService playListService = new PlayListService();
+        PlayListService playListService = new PlayListService(songService);
         int option;
 
         do {
@@ -84,7 +84,6 @@ public class Main {
                             "6. CLASSICAL\n" +
                             "7. REGGAETON\n" +
                             "8. OTHER");
-                    System.out.println("Seleccione género:");
                     int genreOption = sc.nextInt(); sc.nextLine(); //para no comerse el /n
                     switch (genreOption) {
                         case 1: genre = Genre.ROCK; break;

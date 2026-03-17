@@ -1,6 +1,5 @@
 package Classes;
 
-import Exceptions.EntityNotFoundException;
 import Exceptions.PlaylistNotFoundException;
 import Exceptions.SongNotFoundException;
 
@@ -12,9 +11,9 @@ public class PlayListService {
     private PlayListRepository playLists;
     private SongService songService;
 
-    public PlayListService() {
+    public PlayListService(SongService songService) {
         this.playLists = new PlayListRepository();
-        this.songService = new SongService();
+        this.songService = songService;
     }
 
     /*

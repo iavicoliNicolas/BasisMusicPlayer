@@ -11,11 +11,19 @@ public class SongService {
     private final SongRepository songRepository;
 
     public SongService() {
+
         this.songRepository = new SongRepository();
     }
 
 
     public void createNewSong(String name, String artist, int durationSeconds, Genre genre) {
+
+        if ( artist.isBlank() ) {
+            throw new IllegalArgumentException("\"Song artist cannot be empty\")");
+        }
+        if ( durationSeconds <= 0 ) {
+            throw new IllegalArgumentException("Song duration must be greater than 0");
+        }
         songRepository.save( new Song(name, artist, durationSeconds, genre) );
     }
 
